@@ -76,12 +76,21 @@ namespace MediaTekDocuments.controller
         {
             return access.GetAllPublics();
         }
+        
+        /// <summary>
+        /// getter sur les utilisateurs
+        /// </summary>
+        /// <returns>Liste d'objets Utilisateur</returns>
+        public List<Utilisateur> GetAllUtilisateurs()
+        {
+            return access.GetAllUtilisateurs();
+        }
 
         /// <summary>
         /// getter sur les abonnements
         /// </summary>
         /// <returns>Liste d'objets Public</returns>
-        public List<Abonnement> GetAbonnements(string idDocument)
+        public List<Abonnement> GetAbonnementsRevue(string idDocument)
         {
             return access.GetAbonnementsRevue(idDocument);
         }

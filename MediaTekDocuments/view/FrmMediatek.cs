@@ -21,13 +21,37 @@ namespace MediaTekDocuments.view
         private readonly BindingSource bdgPublics = new BindingSource();
         private readonly BindingSource bdgRayons = new BindingSource();
 
+        private readonly Utilisateur utilisateur;
+
         /// <summary>
         /// Constructeur : création du contrôleur lié à ce formulaire
         /// </summary>
-        internal FrmMediatek()
+        internal FrmMediatek(Utilisateur utilisateur)
         {
             InitializeComponent();
             this.controller = new FrmMediatekController();
+            this.utilisateur = utilisateur;
+            AutorisationsAcces(utilisateur);
+        }
+
+        public void AutorisationsAcces(Utilisateur utilisateur)
+        {
+            if (utilisateur.Type == "Administratif" || utilisateur.Type == "Administrateur")
+            {
+                FrmRevues30j frmRevues30J = new FrmRevues30j();
+                frmRevues30J.ShowDialog();
+            }
+            else if (utilisateur.Type == "Prêts")
+            {
+                tabOngletsApplication.TabPages.Remove(tabCommandeLivre);
+                tabOngletsApplication.TabPages.Remove(tabCommandeDvd);
+                tabOngletsApplication.TabPages.Remove(tabCommandeRevue);
+                // empêcher les modifications
+                grpLivresInfos.Enabled = false;
+                grpDvdInfos.Enabled = false;
+                grpRevuesInfos.Enabled = false;
+                grpReceptionExemplaire.Visible = false;
+            }
         }
 
         /// <summary>
@@ -1876,8 +1900,6 @@ namespace MediaTekDocuments.view
             txbCommandeRevueNumeroRecherche.Text = "";
             AccesCommandeRevueGroupBox(false);
             btnSupprimerCommandeRevue.Enabled = false;
-            FrmRevues30j frmRevues30J = new FrmRevues30j();
-            frmRevues30J.ShowDialog();
         }
 
         /// <summary>
@@ -1886,7 +1908,7 @@ namespace MediaTekDocuments.view
         private void AfficheInfoCommandesRevue()
         {
             string idCmdRevue = txbCommandeRevueNumeroRecherche.Text;
-            lesAbonnements = controller.GetAbonnements(idCmdRevue);
+            lesAbonnements = controller.GetAbonnementsRevue(idCmdRevue);
             RemplirCommandeRevueListe(lesAbonnements);
             AccesCommandeRevueGroupBox(true);
         }

@@ -124,6 +124,16 @@ namespace MediaTekDocuments.dal
         }
 
         /// <summary>
+        /// Retourne tous les utilisateurs à partir de la BDD
+        /// </summary>
+        /// <returns>Liste d'objets Utilisateur</returns>
+        public List<Utilisateur> GetAllUtilisateurs()
+        {
+            List<Utilisateur> lesUtilisateurs = TraitementRecup<Utilisateur>(GET, "utilisateur");
+            return lesUtilisateurs;
+        }
+
+        /// <summary>
         /// Retourne toutes les revues à partir de la BDD
         /// </summary>
         /// <returns>Liste d'objets Revue</returns>
