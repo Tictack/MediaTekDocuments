@@ -19,6 +19,10 @@ namespace MediaTekDocuments.dal
         /// </summary>
         private static readonly string uriApi = "http://localhost/rest_mediatekdocuments/";
         /// <summary>
+        /// nom de connexion à la bdd
+        /// </summary>
+        private static readonly string connectionName = "MediaTekDocuments.Properties.Settings.mediatek86ConnectionString";
+        /// <summary>
         /// instance unique de la classe
         /// </summary>
         private static Access instance = null;
@@ -45,12 +49,27 @@ namespace MediaTekDocuments.dal
         /// Méthode privée pour créer un singleton
         /// initialise l'accès à l'API
         /// </summary>
+
+        /// <summary>
+        /// Récupération de la chaîne de connexion
+        /// </summary>
+        /// <param name="name">nom de la chaîne de connexion</param>
+        /// <returns></returns>
+        static string GetConnectionStringByName(string name)
+        {
+            string value = null;
+            ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings[name];
+            if (settings != null)
+                value = settings.ConnectionString;
+            return value;
+        }
+
         private Access()
         {
             String authenticationString;
             try
             {
-                authenticationString = "admin:adminpwd";
+                authenticationString = GetConnectionStringByName(connectionName);
                 api = ApiRest.GetInstance(uriApi, authenticationString);
             }
             catch (Exception e)
