@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# S107: Methods should not have too many parameters
+dotnet_diagnostic.S107.severity = none

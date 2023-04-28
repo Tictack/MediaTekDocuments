@@ -7,7 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaTekDocuments", "MediaT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaTekDocumentsTests", "MediaTekDocumentsTests2\MediaTekDocumentsTests.csproj", "{32944C7A-2F24-4281-A1A0-64BBD68362B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlowMediaTekDocuments", "SpecFlowMediaTekDocuments\SpecFlowMediaTekDocuments.csproj", "{9A6DC394-F6C7-4065-8001-5CB6591260CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecFlowMediaTekDocuments", "SpecFlowMediaTekDocuments\SpecFlowMediaTekDocuments.csproj", "{9A6DC394-F6C7-4065-8001-5CB6591260CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{86A16E1B-1992-49F1-92B8-4135545BD94F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

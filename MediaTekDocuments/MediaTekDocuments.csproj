@@ -122,6 +122,9 @@
     <EmbeddedResource Include="view\FrmRevues30j.resx">
       <DependentUpon>FrmRevues30j.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="..\.sonarlint\mediatekdocumentscsharp.ruleset">
       <Link>mediatekdocumentscsharp.ruleset</Link>
     </None>

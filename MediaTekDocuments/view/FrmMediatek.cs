@@ -21,8 +21,6 @@ namespace MediaTekDocuments.view
         private readonly BindingSource bdgPublics = new BindingSource();
         private readonly BindingSource bdgRayons = new BindingSource();
 
-        private readonly Utilisateur utilisateur;
-
         /// <summary>
         /// Constructeur : création du contrôleur lié à ce formulaire
         /// </summary>
@@ -30,7 +28,6 @@ namespace MediaTekDocuments.view
         {
             InitializeComponent();
             this.controller = new FrmMediatekController();
-            this.utilisateur = utilisateur;
             AutorisationsAcces(utilisateur);
         }
 
