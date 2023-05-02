@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MediaTekDocuments.model
 {
+    /// <summary>
+    /// Classe métier Utilisateur (informations d'authentification)
+    /// </summary>
     public class Utilisateur
     {
         public string Id { get; }

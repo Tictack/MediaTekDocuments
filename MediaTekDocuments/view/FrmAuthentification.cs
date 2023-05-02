@@ -12,11 +12,17 @@ using System.Windows.Forms;
 
 namespace MediaTekDocuments.view
 {
+    /// <summary>
+    /// Classe d'affichage
+    /// </summary>
     public partial class FrmAuthentification : Form
     {
         private readonly FrmMediatekController controller;
         private List<Utilisateur> lesUtilisateurs = new List<Utilisateur>();
 
+        /// <summary>
+        /// Constructeur : création du contrôleur lié à ce formulaire
+        /// </summary>
         public FrmAuthentification()
         {
             InitializeComponent();
@@ -24,13 +30,18 @@ namespace MediaTekDocuments.view
             txbUtilisateur.Select();
         }
 
+        /// <summary>
+        /// Se connecte à l'application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSeConnecter_Click(object sender, EventArgs e)
         {
             try
             {
                 lesUtilisateurs = controller.GetAllUtilisateurs();
                 int k = 0;
-                while (lesUtilisateurs[k].Login != txbUtilisateur.Text && lesUtilisateurs[k].Password != txbMotDePasse.Text && k <= lesUtilisateurs.Count)
+                while ((lesUtilisateurs[k].Login != txbUtilisateur.Text || lesUtilisateurs[k].Password != txbMotDePasse.Text) && k <= lesUtilisateurs.Count)
                 {
                     k++;
                 }
@@ -49,6 +60,10 @@ namespace MediaTekDocuments.view
             }
         }
 
+        /// <summary>
+        /// Vérifie le type d'utilisateur connecté
+        /// </summary>
+        /// <param name="utilisateur">utilisateur de l'application</param>
         private void VerificationType(Utilisateur utilisateur)
         {
             if (utilisateur.Type == "Culture")

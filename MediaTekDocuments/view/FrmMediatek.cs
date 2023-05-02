@@ -24,13 +24,17 @@ namespace MediaTekDocuments.view
         /// <summary>
         /// Constructeur : création du contrôleur lié à ce formulaire
         /// </summary>
-        internal FrmMediatek(Utilisateur utilisateur)
+        public FrmMediatek(Utilisateur utilisateur)
         {
             InitializeComponent();
             this.controller = new FrmMediatekController();
             AutorisationsAcces(utilisateur);
         }
 
+        /// <summary>
+        /// Autorisation à l'acces au formulaire
+        /// </summary>
+        /// <param name="utilisateur">utilisateur de l'application</param>
         public void AutorisationsAcces(Utilisateur utilisateur)
         {
             if (utilisateur.Type == "Administratif" || utilisateur.Type == "Administrateur")
@@ -1270,8 +1274,7 @@ namespace MediaTekDocuments.view
         const string RELANCEE = "relancée";
 
         /// <summary>
-        /// Ouverture de l'onglet Commande Livres : 
-        /// appel des méthodes pour remplir le datagrid des livres et des combos (genre, rayon, public)
+        /// Ouverture de l'onglet Commande Livres 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1409,7 +1412,12 @@ namespace MediaTekDocuments.view
             }
             RemplirCmdLivresListe(sortedList);
         }
-
+        
+        /// <summary>
+        /// Vider toutes les zones relatives au numéro modifié
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txbLivreCommandeNumero_TextChanged(object sender, EventArgs e)
         {
             txbLivreCommandeTitre.Text = "";
@@ -1484,6 +1492,10 @@ namespace MediaTekDocuments.view
             }
         }
 
+        /// <summary>
+        /// Affichage du suivi de la commande
+        /// </summary>
+        /// <param name="commandeDocument">commande d'un document</param>
         private void AfficherSuiviCommande(CommandeDocument commandeDocument)
         {
             if (commandeDocument.IdSuivi == "00001")
@@ -1508,6 +1520,11 @@ namespace MediaTekDocuments.view
                 lstSuiviCommande.Items.Add(ENCOURS);
             }
         }
+
+        /// <summary>
+        /// Modification du suivi de la commande
+        /// </summary>
+        /// <param name="commandedocument">commande d'un document</param>
         private void ModifierSuiviCommande(CommandeDocument commandedocument) 
         { 
             if (lstSuiviCommande.SelectedItem.ToString() == ENCOURS)
@@ -1534,11 +1551,19 @@ namespace MediaTekDocuments.view
             CommandeLivreeExemplaire(commandedocument);
         }
 
+        /// <summary>
+        /// Vider la liste contenant les possibilités de changement de suivis
+        /// </summary>
         private void VideLstSuiviCommande()
         {
             lstSuiviCommande.Items.Clear();
         }
 
+        /// <summary>
+        /// Changement de proposition de suivi 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstSuiviCommande_SelectedValueChanged(object sender, EventArgs e)
         {
             CommandeDocument commandeDocument = (CommandeDocument)bdgCommandesListe.List[bdgCommandesListe.Position];
@@ -1546,6 +1571,12 @@ namespace MediaTekDocuments.view
             AfficherSuiviCommande(commandeDocument);
             AfficheReceptionCommandesLivre();
         }
+
+        /// <summary>
+        /// Suppression de la commande
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSupprimerCommande_Click(object sender, EventArgs e)
         {
             CommandeDocument commandeDocument = (CommandeDocument)bdgCommandesListe.List[bdgCommandesListe.Position];
@@ -1563,6 +1594,10 @@ namespace MediaTekDocuments.view
             }
         }
 
+        /// <summary>
+        /// Création d'un exemplaire lors d'une livraison
+        /// </summary>
+        /// <param name="commandedocument"></param>
         private void CommandeLivreeExemplaire(CommandeDocument commandedocument)
         {
             if (commandedocument.Suivi == LIVREE)
@@ -1584,8 +1619,7 @@ namespace MediaTekDocuments.view
         #region Onglet Commandes Dvd
 
         /// <summary>
-        /// Ouverture de l'onglet Commande Dvds : 
-        /// appel des méthodes pour remplir le datagrid des dvds et des combos (genre, rayon, public)
+        /// Ouverture de l'onglet Commande Dvds
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1724,6 +1758,11 @@ namespace MediaTekDocuments.view
             RemplirCmdDvdListe(sortedList);
         }
 
+        /// <summary>
+        /// Vider toutes les zones relatives au numéro modifié
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txbNumeroCommandeDvdRechercher_TextChanged(object sender, EventArgs e)
         {
             txbCommandeDvdTitre.Text = "";
@@ -1739,6 +1778,7 @@ namespace MediaTekDocuments.view
             AccesReceptionDvdGroupBox(false);
             grpModifierSuiviCommandeDvd.Visible = false;
         }
+
         /// <summary>
         /// Enregistrement de la nouvelle commande
         /// </summary>
@@ -1797,6 +1837,11 @@ namespace MediaTekDocuments.view
                 VideLstSuiviCommandeDvd();
             }
         }
+
+        /// <summary>
+        /// Affichage du suivi de la commande
+        /// </summary>
+        /// <param name="commandeDocument"></param>
         private void AfficherSuiviCommandeDvd(CommandeDocument commandeDocument)
         {
             if (commandeDocument.IdSuivi == "00001")
@@ -1821,6 +1866,11 @@ namespace MediaTekDocuments.view
                 lstSuiviCommandeDvd.Items.Add(ENCOURS);
             }
         }
+        
+        /// <summary>
+        /// Modification du suivi de la commande
+        /// </summary>
+        /// <param name="commandedocument"></param>
         private void ModifierSuiviCommandeDvd(CommandeDocument commandedocument)
         {
             if (lstSuiviCommandeDvd.SelectedItem.ToString() == ENCOURS)
@@ -1847,11 +1897,19 @@ namespace MediaTekDocuments.view
             CommandeLivreeExemplaire(commandedocument);
         }
 
+        /// <summary>
+        /// Vider la liste de suivi
+        /// </summary>
         private void VideLstSuiviCommandeDvd()
         {
             lstSuiviCommandeDvd.Items.Clear();
         }
 
+        /// <summary>
+        /// Changement de proposition de suivi
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstSuiviCommandeDvd_SelectedValueChanged(object sender, EventArgs e)
         {
             CommandeDocument commandeDocument = (CommandeDocument)bdgCommandesListe.List[bdgCommandesListe.Position];
@@ -1859,6 +1917,12 @@ namespace MediaTekDocuments.view
             AfficherSuiviCommandeDvd(commandeDocument);
             AfficheReceptionCommandesDvd();
         }
+
+        /// <summary>
+        /// Suppression de la commande de dvd
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSupprimerCommandeDvd_Click(object sender, EventArgs e)
         {
             if (dgvDvdCommandesListe.RowCount != 0)
@@ -1886,8 +1950,7 @@ namespace MediaTekDocuments.view
         private List<Abonnement> lesAbonnements = new List<Abonnement>();
 
         /// <summary>
-        /// Ouverture de l'onglet Commande Revue : 
-        /// appel des méthodes pour remplir le datagrid des revues et des combos (genre, rayon, public)
+        /// Ouverture de l'onglet Commande Revue 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2022,6 +2085,11 @@ namespace MediaTekDocuments.view
             RemplirCommandeRevueListe(sortedList);
         }
 
+        /// <summary>
+        /// Vider toutes les zones relatives au numéro modifié
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txbCommandeRevueNumeroRecherche_TextChanged(object sender, EventArgs e)
         {
             txbCommandeRevueTitre.Text = "";
@@ -2036,6 +2104,7 @@ namespace MediaTekDocuments.view
             AccesCommandeRevueGroupBox(false);
             btnSupprimerCommandeRevue.Enabled = false;
         }
+
         /// <summary>
         /// Enregistrement de la nouvelle commande
         /// </summary>
@@ -2073,6 +2142,11 @@ namespace MediaTekDocuments.view
             }
         }
 
+        /// <summary>
+        /// Supprimer la commande de revue
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSupprimerCommandeRevue_Click(object sender, EventArgs e)
         {
             if (dgvCommandesRevueListe.RowCount != 0)

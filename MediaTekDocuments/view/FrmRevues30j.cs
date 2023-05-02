@@ -21,8 +21,8 @@ namespace MediaTekDocuments.view
 
         /// <summary>
         /// Constructeur : création du contrôleur lié à ce formulaire
+        /// Et rempli la liste des abonnements arrivés à échéace
         /// </summary>
-        /// <param name="controller">Controller</param>
         public FrmRevues30j()
         {
             InitializeComponent();
@@ -30,6 +30,7 @@ namespace MediaTekDocuments.view
             lesAbonnementsAEcheance = AbonnementsAEcheance();
             RemplirAbonnementsAEcheance(lesAbonnementsAEcheance);
         }
+
         /// <summary>
         /// Remplissage de la grille des abonnements qui se terminent
         /// </summary>
@@ -47,6 +48,10 @@ namespace MediaTekDocuments.view
             dgvAbonnementsAEcheance.Columns[1].HeaderCell.Value = "Titre";
         }
 
+        /// <summary>
+        /// Liste des abonnements arrivés à échéance
+        /// </summary>
+        /// <returns></returns>
         private List<Abonnement> AbonnementsAEcheance()
         {
             List<Abonnement> lesAbonnements = controller.GetAbonnements();
