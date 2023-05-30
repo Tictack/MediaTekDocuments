@@ -55,10 +55,11 @@ namespace MediaTekDocuments.view
         private List<Abonnement> AbonnementsAEcheance()
         {
             List<Abonnement> lesAbonnements = controller.GetAbonnements();
-            DateTime trenteJours = DateTime.Now.AddDays(-30);
+            DateTime trenteJours = DateTime.Now.AddDays(30);
+            DateTime now = DateTime.Today;
             foreach (Abonnement abonnement in lesAbonnements)
             {
-                if (abonnement.DateFinAbonnement > trenteJours)
+                if (trenteJours > abonnement.DateFinAbonnement && abonnement.DateFinAbonnement > now)
                 {
                     lesAbonnementsAEcheance.Add(abonnement);
                 }
